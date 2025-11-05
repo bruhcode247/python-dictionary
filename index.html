@@ -7,10 +7,24 @@
   <!-- Google Fonts for clean look -->
   <link href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" rel="stylesheet">
   <style>
+    /* 
+      Base styles to configure body and overall layout.
+      - Sets full height, no margin for body/html
+      - Uses 'Inter' font for modern appearance 
+    */
     html, body { height: 100%; margin: 0; }
     body { font-family: 'Inter', Arial, sans-serif; background:#fff; min-height: 100vh; }
+
+    /* 
+      Flex layout for main container: sidebar + main content
+    */
     #container { display: flex; min-height: 100vh; }
-    /* SIDEBAR */
+
+    /* 
+      SIDEBAR styling
+      - Fixed width, vertical layout, slight shadow for separation 
+      - scrollable if items overflow
+    */
     .sidebar {
       width: 300px;
       background: #fff;
@@ -20,7 +34,7 @@
       min-height: 100vh;
       position: sticky;
       top: 0;
-      /* To make the background shadow like Thunkable's when scrolling */
+      /* Shadow effect for separation */
       box-shadow: 1px 0 0 #eee;
       overflow-y: auto;
       z-index: 100;
@@ -82,7 +96,11 @@
       padding-left: 50px;
       color: #848a96;
     }
-    /* Page MAIN Content */
+    /*
+      MAIN CONTENT styles
+      - Makes #main fill available space
+      - Adds padding and background for content
+    */
     #main {
       flex: 1;
       padding: 2.8rem 4vw 4em 4vw;
@@ -117,6 +135,10 @@
       color:#1257A2;
     }
     footer { color: #adb1ba; font-size:0.99em; margin-top: 2.5em; border-top: 1px solid #ecf0f3; padding-top: 1.2em; }
+    /*
+      Responsive styles for tablets and mobile:
+      - Sidebar becomes horizontal, smaller paddings
+    */
     @media (max-width: 900px) {
       .sidebar { position:static; width:100%; min-height:unset; box-shadow:none; border-right:none; }
       #container { flex-direction: column; }
@@ -131,9 +153,19 @@
   </style>
 </head>
 <body>
+<!-- 
+  The main layout uses a flex container:
+  - Left: Sidebar navigation
+  - Right: Main documentation content
+-->
 <div id="container">
   <!-- SIDEBAR -->
   <aside class="sidebar">
+    <!-- 
+      Sidebar navigation with section headings and links.
+      Headings use emojis for visual clarity.
+      Each link points to a section, some with chevrons to indicate submenus.
+    -->
     <div class="sidebar-group">
       <div class="sidebar-heading">
         <span class="emoji" title="Getting Started">🚀</span>
@@ -176,6 +208,10 @@
   </aside>
   <!-- MAIN CONTENT -->
   <div id="main">
+    <!-- 
+      Page header and navigation links. 
+      The <nav> provides quick access to key documentation sections.
+    -->
     <h1>Python Project Documentation</h1>
     <nav>
       <a href="index.html">Home</a>
@@ -183,6 +219,10 @@
       <a href="#">API</a>
     </nav>
     <main>
+      <!--
+        Main landing content.
+        Includes a welcome message and links to documentation topics.
+      -->
       <h2>Welcome!</h2>
       <p>This is the homepage of your Python documentation site.</p>
       <p>Use the navigation sidebar on the left to explore guides, API reference, and more.</p>
@@ -193,6 +233,7 @@
       <p>Edit these HTML files to expand your documentation!</p>
     </main>
     <footer>
+      <!-- Footer with copyright -->
       &copy; 2025 Your Project. Powered by GitHub Pages.
     </footer>
   </div>
