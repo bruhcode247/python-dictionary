@@ -25,7 +25,7 @@ a {
     display: inline-block;
     margin: 20px 0;
     text-decoration: none;
-    background-color: #ffeb3b; /* Bright yellow for buttons */
+    background-color: #A6C48A; /* Bright yellow for buttons */
     color: #000;
     padding: 10px 20px;
     border-radius: 25px; /* Bubbly button effect */
@@ -33,7 +33,7 @@ a {
 }
 
 a:hover {
-    background-color: #fbc02d; /* Darker yellow on hover */
+    background-color: #74D3AE; /* Darker yellow on hover */
 }
 
 pre {
@@ -46,7 +46,7 @@ pre {
 
 code {
     font-family: 'Courier New', monospace;
-    color: #d32f2f; /* Red color for code text */
+    color: #F6E7CB; /* Red color for code text */
 }
 
 img {
