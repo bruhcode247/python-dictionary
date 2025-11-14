@@ -4,6 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>How to Use Variables</title>
+        <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+        <script src="code-runner.js"></script>
         <link rel="stylesheet" href="guide page.css" />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Comic+Neue:wght@400;700&family=Fira+Code&display=swap"
@@ -17,20 +19,42 @@
 
             <h2>set a varible</h2>
 
-            <pre>
-                <code>
+            <div class="code-container">
+                <div class="code-buttons">
+                    <button class="copy-button" onclick="copyCode(this)">
+                        Copy
+                    </button>
+                    <button class="run-button" onclick="runCode(this)">
+                        Run
+                    </button>
+                </div>
+                <pre>
+                    <code>
 myvarible = "hi"
-                </code>
-            </pre>
+                    </code>
+                </pre>
+                <div class="code-output" id="output-1"></div>
+            </div>
             <p>the space and "" is needed or it will give you errors</p>
 
             <h2>how to make python set a number as a varible</h2>
 
-            <pre>
-                <code>
+            <div class="code-container">
+                <div class="code-buttons">
+                    <button class="copy-button" onclick="copyCode(this)">
+                        Copy
+                    </button>
+                    <button class="run-button" onclick="runCode(this)">
+                        Run
+                    </button>
+                </div>
+                <pre>
+                    <code>
 varible = 81
-                </code>
-            </pre>
+                    </code>
+                </pre>
+                <div class="code-output" id="output-2"></div>
+            </div>
             <p>
                 so this time you dont need the "" beacuase the "" tells python
                 that it is a string

@@ -4,11 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>How to Install Python</title>
+        <title>How to Install Python - Fun & Easy Guide</title>
         <link rel="stylesheet" href="guide page.css" />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Comic+Neue:wght@400;700&family=Fira+Code&display=swap"
             rel="stylesheet"
         />
+        <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+        <script src="code-runner.js"></script>
     </head>
     <body>
         <div class="installation-container">
@@ -57,7 +60,18 @@
                 Finally, run the code below in your terminal or command prompt
                 to check if Python installed successfully:
             </p>
-            <code>python --version</code>
+            <div class="code-container">
+                <div class="code-buttons">
+                    <button class="copy-button" onclick="copyCode(this)">
+                        Copy
+                    </button>
+                    <button class="run-button" onclick="runCode(this)">
+                        Run
+                    </button>
+                </div>
+                <code>python --version</code>
+                <div class="code-output" id="output-1"></div>
+            </div>
         </div>
     </body>
 </html>

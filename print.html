@@ -4,6 +4,8 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>How to Use Print</title>
+        <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+        <script src="code-runner.js"></script>
         <link rel="stylesheet" href="guide page.css" />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Comic+Neue:wght@400;700&family=Fira+Code&display=swap"
@@ -17,11 +19,22 @@
 
             <h2>just print normally</h2>
 
-            <pre>
-                <code>
+            <div class="code-container">
+                <div class="code-buttons">
+                    <button class="copy-button" onclick="copyCode(this)">
+                        Copy
+                    </button>
+                    <button class="run-button" onclick="runCode(this)">
+                        Run
+                    </button>
+                </div>
+                <pre>
+                    <code>
 print("")
-                </code>
-            </pre>
+                    </code>
+                </pre>
+                <div class="code-output" id="output-1"></div>
+            </div>
             <p>
                 you have to make those "" other wise it will treat the string as
                 a number
@@ -29,12 +42,23 @@ print("")
 
             <h2>how to make python print a varible</h2>
 
-            <pre>
-                <code>
-varible = printme
+            <div class="code-container">
+                <div class="code-buttons">
+                    <button class="copy-button" onclick="copyCode(this)">
+                        Copy
+                    </button>
+                    <button class="run-button" onclick="runCode(this)">
+                        Run
+                    </button>
+                </div>
+                <pre>
+                    <code>
+varible = "printme"
 print(varible)
-                </code>
-            </pre>
+                    </code>
+                </pre>
+                <div class="code-output" id="output-2"></div>
+            </div>
         </div>
     </body>
 </html>
