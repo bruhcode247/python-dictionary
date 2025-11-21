@@ -1,978 +1,872 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Master Python dictionaries with comprehensive tutorials, examples, and best practices. Learn dictionary methods, operations, and advanced techniques." />
-        <meta name="keywords" content="python dictionary, python dict, hashmap python, python tutorial, dictionary methods, python programming" />
-        <meta name="author" content="Python Dictionary Learning Hub" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tech Tips & Tutorials - Learn programming, web development, and technology with practical guides and examples">
+    <meta name="keywords" content="programming, tutorials, web development, tech tips, coding, software">
+    <title>TechTips Blog - Programming Tutorials & Guides</title>
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://pythondictionary.com/" />
-        <meta property="og:title" content="Python Dictionary Mastery - Complete Learning Resource" />
-        <meta property="og:description" content="Master Python dictionaries with comprehensive tutorials, examples, and best practices." />
-        <meta property="og:image" content="https://pythondictionary.com/img/python-dict-og.jpg" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://pythondictionary.com/" />
-        <meta property="twitter:title" content="Python Dictionary Mastery - Complete Learning Resource" />
-        <meta property="twitter:description" content="Master Python dictionaries with comprehensive tutorials, examples, and best practices." />
-        <meta property="twitter:image" content="https://pythondictionary.com/img/python-dict-og.jpg" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        <title>Python Dictionary Mastery - Complete Learning Resource</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <!-- Preconnect to external domains -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #991b1b;
+            --text-dark: #1f2937;
+            --text-gray: #6b7280;
+            --text-light: #9ca3af;
+            --bg-white: #ffffff;
+            --bg-light: #f9fafb;
+            --bg-gray: #f3f4f6;
+            --border: #e5e7eb;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
 
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="fontawesome/css/all.min.css" />
-        <link rel="stylesheet" href="css/templatemo-style.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            line-height: 1.6;
+        }
 
-        <!-- RSS Feed -->
-        <link rel="alternate" type="application/rss+xml" title="Python Dictionary Blog RSS Feed" href="/rss.xml" />
+        /* Header */
+        .header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: var(--shadow);
+        }
 
-        <!-- Canonical URL -->
-        <link rel="canonical" href="https://pythondictionary.com/" />
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-        <!-- Custom Python-themed Styles -->
-        <style>
-            :root {
-                --python-blue: #3776ab;
-                --python-yellow: #ffd343;
-                --python-dark: #2b5b84;
-                --code-bg: #282c34;
-                --code-text: #abb2bf;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-dark);
+        }
+
+        .nav-menu .active {
+            color: var(--primary);
+        }
+
+        .search-button {
+            padding: 8px 16px;
+            background: var(--bg-gray);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .search-button:hover {
+            background: var(--bg-light);
+            border-color: var(--text-gray);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, var(--bg-gray) 0%, var(--bg-white) 100%);
+            padding: 80px 24px;
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.2s;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-white);
+            color: var(--text-dark);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-gray);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 48px;
+        }
+
+        /* Article List */
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-tab:hover {
+            background: var(--bg-gray);
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .article-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .article-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-image i {
+            font-size: 48px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .article-content {
+            padding: 24px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .article-category {
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .article-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            color: var(--text-dark);
+        }
+
+        .article-excerpt {
+            color: var(--text-gray);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .author-name {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 88px;
+            height: fit-content;
+        }
+
+        .widget {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .widget-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 40px 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            background: var(--bg-white);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+
+        /* Categories */
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .category-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .category-link:hover {
+            color: var(--primary);
+        }
+
+        .category-count {
+            background: var(--bg-gray);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Popular Posts */
+        .popular-post {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .popular-post:last-child {
+            margin-bottom: 0;
+        }
+
+        .popular-number {
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .popular-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .popular-content span {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Newsletter */
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .newsletter-input {
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .newsletter-button {
+            padding: 10px 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .newsletter-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 48px 24px 24px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-section p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
             }
 
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            .hero h1 {
+                font-size: 32px;
             }
 
-            .python-hero {
-                background: linear-gradient(135deg, var(--python-blue) 0%, var(--python-dark) 100%);
-                padding: 80px 0;
-                color: white;
+            .content-grid {
+                grid-template-columns: 1fr;
             }
 
-            .code-font {
-                font-family: 'Source Code Pro', monospace;
-            }
-
-            .tutorial-card {
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-                height: 100%;
-                border-radius: 12px;
-                overflow: hidden;
-                background: #fff;
-                border: 1px solid #e0e6ed;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-            }
-
-            .tutorial-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 24px rgba(55, 118, 171, 0.15);
-                border-color: var(--python-blue);
-            }
-
-            .difficulty-badge {
-                position: absolute;
-                top: 15px;
-                right: 15px;
-                padding: 5px 12px;
-                border-radius: 20px;
-                font-size: 0.75rem;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-
-            .difficulty-beginner {
-                background: #4caf50;
-                color: white;
-            }
-
-            .difficulty-intermediate {
-                background: #ff9800;
-                color: white;
-            }
-
-            .difficulty-advanced {
-                background: #f44336;
-                color: white;
-            }
-
-            .topic-tag {
-                display: inline-block;
-                padding: 4px 10px;
-                background: #f0f4f8;
-                color: var(--python-dark);
-                border-radius: 15px;
-                font-size: 0.8rem;
-                margin: 2px;
-            }
-
-            .code-preview {
-                background: var(--code-bg);
-                color: var(--code-text);
-                padding: 12px;
-                border-radius: 8px;
-                font-family: 'Source Code Pro', monospace;
-                font-size: 0.9rem;
-                margin: 15px 0;
-                overflow-x: auto;
-            }
-
-            .code-preview .keyword {
-                color: #c678dd;
-            }
-
-            .code-preview .string {
-                color: #98c379;
-            }
-
-            .code-preview .number {
-                color: #d19a66;
-            }
-
-            .code-preview .comment {
-                color: #5c6370;
-                font-style: italic;
-            }
-
-            .method-card {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                padding: 20px;
-                border-radius: 10px;
-                margin-bottom: 20px;
-                transition: transform 0.3s ease;
-            }
-
-            .method-card:hover {
-                transform: scale(1.02);
-            }
-
-            .interactive-demo {
-                background: #f8f9fa;
-                border: 2px dashed var(--python-blue);
-                border-radius: 10px;
-                padding: 20px;
-                text-align: center;
-            }
-
-            .python-icon {
-                width: 40px;
-                height: 40px;
-                background: var(--python-blue);
-                border-radius: 8px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                font-weight: bold;
-                margin-right: 10px;
-            }
-
-            .progress-tracker {
-                background: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                margin-bottom: 30px;
-            }
-
-            .progress-bar-python {
-                background: linear-gradient(90deg, var(--python-yellow) 0%, var(--python-blue) 100%);
-            }
-
-            .quiz-section {
-                background: #f0f7ff;
-                padding: 30px;
-                border-radius: 10px;
-                border-left: 4px solid var(--python-blue);
-            }
-
-            .search-box input {
-                border: 2px solid #e0e6ed;
-                padding: 12px 45px 12px 20px;
-                border-radius: 25px;
-                width: 100%;
-                transition: border-color 0.3s ease;
-            }
-
-            .search-box input:focus {
-                border-color: var(--python-blue);
-                outline: none;
-            }
-
-            .search-box button {
-                position: absolute;
-                right: 5px;
-                top: 50%;
-                transform: translateY(-50%);
-                background: var(--python-blue);
-                border: none;
-                border-radius: 50%;
-                width: 38px;
-                height: 38px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-            }
-
-            .nav-pills .nav-link.active {
-                background: var(--python-blue);
-            }
-
-            .syntax-highlight {
-                background: #f6f8fa;
-                padding: 2px 6px;
-                border-radius: 3px;
-                font-family: 'Source Code Pro', monospace;
-                font-size: 0.9em;
-                color: var(--python-dark);
-            }
-
-            .feature-icon {
-                font-size: 2.5rem;
-                color: var(--python-blue);
-                margin-bottom: 15px;
-            }
-
-            .breadcrumb {
-                background: transparent;
-                padding: 0;
-                margin: 20px 0;
-            }
-
-            .breadcrumb-item a {
-                color: var(--python-blue);
-                text-decoration: none;
-            }
-
-            .breadcrumb-item a:hover {
-                text-decoration: underline;
-            }
-        </style>
-
-        <!-- Structured Data for Educational Content -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "TechArticle",
-            "headline": "Python Dictionary Complete Guide",
-            "description": "Comprehensive resource for learning Python dictionaries",
-            "keywords": "python, dictionary, programming, tutorial",
-            "url": "https://pythondictionary.com/",
-            "datePublished": "2023-01-01",
-            "dateModified": "2023-10-18",
-            "author": {
-                "@type": "Organization",
-                "name": "Python Dictionary Learning Hub"
+            .sidebar {
+                position: static;
             }
         }
-        </script>
-    </head>
-    <body>
-        <!-- Skip to main content for accessibility -->
-        <a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" role="navigation" aria-label="Main navigation">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center" href="/">
-                    <span class="python-icon">Py</span>
-                    <span class="font-weight-bold">Dictionary Mastery</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#tutorials">Tutorials</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="methodsDropdown" role="button" data-toggle="dropdown">
-                                Methods
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="methodsDropdown">
-                                <li><a class="dropdown-item" href="#get">get()</a></li>
-                                <li><a class="dropdown-item" href="#keys">keys()</a></li>
-                                <li><a class="dropdown-item" href="#values">values()</a></li>
-                                <li><a class="dropdown-item" href="#items">items()</a></li>
-                                <li><a class="dropdown-item" href="#update">update()</a></li>
-                                <li><a class="dropdown-item" href="#pop">pop()</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#examples">Examples</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#practice">Practice</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#cheatsheet">Cheat Sheet</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white ml-2" href="#quiz">Take Quiz</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <div class="python-hero">
-            <div class="container text-center">
-                <h1 class="display-4 font-weight-bold mb-4">Master Python Dictionaries</h1>
-                <p class="lead mb-4">The Complete Guide to Python's Most Powerful Data Structure</p>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="#beginner" class="btn btn-warning btn-lg">Start Learning</a>
-                    <a href="#interactive" class="btn btn-outline-light btn-lg">Try Interactive Demo</a>
-                </div>
-                <div class="mt-4">
-                    <span class="badge badge-light p-2 mr-2">📚 50+ Tutorials</span>
-                    <span class="badge badge-light p-2 mr-2">🎯 100+ Examples</span>
-                    <span class="badge badge-light p-2">🏆 Certification Available</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Breadcrumb -->
-        <div class="container mt-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/python">Python</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dictionaries</li>
-                </ol>
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">T</div>
+                <span class="logo-text">TechTips</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Articles</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><button class="search-button"><i class="fas fa-search"></i> Search</button></li>
+                </ul>
             </nav>
         </div>
+    </header>
 
-        <!-- Main Content -->
-        <main id="main-content" class="container my-5">
-            <div class="row">
-                <!-- Main Content Column -->
-                <div class="col-lg-8">
-                    <!-- Progress Tracker -->
-                    <div class="progress-tracker">
-                        <h3 class="h5 mb-3">Your Learning Progress</h3>
-                        <div class="progress mb-2" style="height: 25px;">
-                            <div class="progress-bar progress-bar-python" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">35%</div>
-                        </div>
-                        <small class="text-muted">7 of 20 topics completed</small>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Learn Technology, Master Programming</h1>
+            <p class="hero-subtitle">Practical tutorials and guides to help you build better software</p>
+            <div class="hero-buttons">
+                <a href="#latest" class="btn btn-primary">Browse Articles</a>
+                <a href="#newsletter" class="btn btn-secondary">Subscribe</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-grid">
+            <!-- Articles -->
+            <main>
+                <div</main> class="section-header">
+                    <h2 class="section-title">Latest Articles</h2>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active">All</button>
+                        <button class="filter-tab">JavaScript</button>
+                        <button class="filter-tab">Python</button>
+                        <button class="filter-tab">React</button>
+                        <button class="filter-tab">Node.js</button>
+                        <button class="filter-tab">DevOps</button>
                     </div>
+                </div>
 
-                    <!-- Category Tabs -->
-                    <ul class="nav nav-pills mb-4" id="tutorialTabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="pill" href="#all">All Tutorials</a>
+                <div class="articles-grid">
+                    <!-- Article 1 -->
+                    <article class="article-card">
+                        <div class="article-image">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">JavaScript</span>
+                                <span>November 15, 2023</span>
+                            </div>
+                            <h3 class="article-title">Understanding Async/Await in JavaScript</h3>
+                            <p class="article-excerpt">Master asynchronous JavaScript with this comprehensive guide to async/await, including practical examples and common pitfalls to avoid.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="author-avatar">JD</div>
+                                    <span class="author-name">John Doe</span>
+                                </div>
+                                <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="article-card">
+                        <div class="article-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">DevOps</span>
+                                <span>November 14, 2023</span>
+                            </div>
+                            <h3 class="article-title">Docker Compose for Development Environments</h3>
+                            <p class="article-excerpt">Learn how to set up efficient development environments using Docker Compose, including database configuration and service orchestration.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="author-avatar">AS</div>
+                                    <span class="author-name">Alice Smith</span>
+                                </div>
+                                <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="article-card">
+                        <div class="article-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">React</span>
+                                <span>November 13, 2023</span>
+                            </div>
+                            <h3 class="article-title">Building Custom React Hooks</h3>
+                            <p class="article-excerpt">Create reusable custom hooks in React to share logic between components and improve code organization in your applications.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="author-avatar">MJ</div>
+                                    <span class="author-name">Mike Johnson</span>
+                                </div>
+                                <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="article-card">
+                        <div class="article-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">Python</span>
+                                <span>November 12, 2023</span>
+                            </div>
+                            <h3 class="article-title">Python Decorators Explained</h3>
+                            <p class="article-excerpt">Deep dive into Python decorators with practical examples, from basic function decorators to advanced class decorators.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="author-avatar">SW</div>
+                                    <span class="author-name">Sarah Wilson</span>
+                                </div>
+                                <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="article-card">
+                        <div class="article-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="article-content">
+                            <div class="article-meta">
+                                <span class="article-category">Database</span>
+                                <span>November 11, 2023</span>
+                            </div>
+                            <h3 class="article-title">PostgreSQL Performance Tuning Guide</h3>
+                            <p class="article-excerpt">Optimize your PostgreSQL database with these proven performance tuning techniques and best practices for production environments.</p>
+                            <div class="article-footer">
+                                <div class="article-author">
+                                    <div class="author-avatar">TC</div>
+                                    <span class="author-name">Tom Chen</span>
+                                </div>
+                                <span class="read-more">Read More <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Search -->
+                <div class="widget">
+                    <h3 class="widget-title">Search</h3>
+                    <div class="search-box">
+                        <input type="search" class="search-input" placeholder="Search articles...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="widget">
+                    <h3 class="widget-title">Categories</h3>
+                    <ul class="category-list">
+                        <li class="category-item">
+                            <a href="#" class="category-link">JavaScript</a>
+                            <span class="category-count">42</span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#basics">Basics</a>
+                        <li class="category-item">
+                            <a href="#" class="category-link">Python</a>
+                            <span class="category-count">38</span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#methods">Methods</a>
+                        <li class="category-item">
+                            <a href="#" class="category-link">React</a>
+                            <span class="category-count">35</span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#advanced">Advanced</a>
+                        <li class="category-item">
+                            <a href="#" class="category-link">Node.js</a>
+                            <span class="category-count">29</span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="pill" href="#real-world">Real World</a>
+                        <li class="category-item">
+                            <a href="#" class="category-link">DevOps</a>
+                            <span class="category-count">24</span>
                         </li>
                     </ul>
-
-                    <!-- Tutorial Grid -->
-                    <div class="row" id="tutorials">
-                        <!-- Tutorial 1: Introduction -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/dict-introduction" class="text-dark text-decoration-none">
-                                            Introduction to Python Dictionaries
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># Creating a dictionary</span><br>
-                                        my_dict = {<span class="string">"name"</span>: <span class="string">"John"</span>, <span class="string">"age"</span>: <span class="number">30</span>}
-                                    </div>
-                                    <p class="text-muted small">Learn what dictionaries are and why they're essential for Python programming.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Fundamentals</span>
-                                            <span class="topic-tag">Syntax</span>
-                                        </div>
-                                        <small class="text-muted">5 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Tutorial 2: Creating Dictionaries -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/creating-dictionaries" class="text-dark text-decoration-none">
-                                            Creating and Initializing Dictionaries
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># Multiple ways to create</span><br>
-                                        d1 = {}<br>
-                                        d2 = <span class="keyword">dict</span>()<br>
-                                        d3 = <span class="keyword">dict</span>(name=<span class="string">"Alice"</span>)
-                                    </div>
-                                    <p class="text-muted small">Explore different methods to create and initialize dictionaries in Python.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Creation</span>
-                                            <span class="topic-tag">Initialization</span>
-                                        </div>
-                                        <small class="text-muted">7 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Tutorial 3: Accessing Values -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-beginner">Beginner</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/accessing-values" class="text-dark text-decoration-none">
-                                            Accessing Dictionary Values
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># Access with brackets or get()</span><br>
-                                        value = my_dict[<span class="string">"key"</span>]<br>
-                                        safe = my_dict.get(<span class="string">"key"</span>, default)
-                                    </div>
-                                    <p class="text-muted small">Master different techniques for accessing dictionary values safely.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Access</span>
-                                            <span class="topic-tag">get()</span>
-                                        </div>
-                                        <small class="text-muted">6 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Tutorial 4: Dictionary Methods -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/dictionary-methods" class="text-dark text-decoration-none">
-                                            Essential Dictionary Methods
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># Common methods</span><br>
-                                        keys = d.keys()<br>
-                                        values = d.values()<br>
-                                        items = d.items()
-                                    </div>
-                                    <p class="text-muted small">Complete guide to all dictionary methods with practical examples.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Methods</span>
-                                            <span class="topic-tag">Operations</span>
-                                        </div>
-                                        <small class="text-muted">10 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Tutorial 5: Dictionary Comprehension -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/dict-comprehension" class="text-dark text-decoration-none">
-                                            Dictionary Comprehension
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># Create dict with comprehension</span><br>
-                                        squares = {x: x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="keyword">range</span>(<span class="number">5</span>)}
-                                    </div>
-                                    <p class="text-muted small">Learn to create dictionaries efficiently using comprehension syntax.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Comprehension</span>
-                                            <span class="topic-tag">Advanced</span>
-                                        </div>
-                                        <small class="text-muted">8 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Tutorial 6: Nested Dictionaries -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/nested-dictionaries" class="text-dark text-decoration-none">
-                                            Working with Nested Dictionaries
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># Nested structure</span><br>
-                                        users = {<br>
-                                        &nbsp;&nbsp;<span class="string">"user1"</span>: {<span class="string">"name"</span>: <span class="string">"Alice"</span>}<br>
-                                        }
-                                    </div>
-                                    <p class="text-muted small">Handle complex data structures with nested dictionaries.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Nested</span>
-                                            <span class="topic-tag">Complex</span>
-                                        </div>
-                                        <small class="text-muted">9 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Tutorial 7: Merging Dictionaries -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/merging-dictionaries" class="text-dark text-decoration-none">
-                                            Merging and Updating Dictionaries
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># Python 3.9+ merge</span><br>
-                                        merged = dict1 | dict2<br>
-                                        dict1.update(dict2)
-                                    </div>
-                                    <p class="text-muted small">Different techniques for combining and merging dictionaries.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Merge</span>
-                                            <span class="topic-tag">Update</span>
-                                        </div>
-                                        <small class="text-muted">7 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Tutorial 8: Performance -->
-                        <article class="col-md-6 mb-4">
-                            <div class="tutorial-card">
-                                <span class="difficulty-badge difficulty-advanced">Advanced</span>
-                                <div class="card-body p-4">
-                                    <h3 class="h5 mb-2">
-                                        <a href="/tutorial/dict-performance" class="text-dark text-decoration-none">
-                                            Dictionary Performance & Optimization
-                                        </a>
-                                    </h3>
-                                    <div class="code-preview">
-                                        <span class="comment"># O(1) average time complexity</span><br>
-                                        <span class="keyword">if</span> key <span class="keyword">in</span> dict: <span class="comment"># Fast!</span><br>
-                                        &nbsp;&nbsp;value = dict[key]
-                                    </div>
-                                    <p class="text-muted small">Understand dictionary internals and optimize for performance.</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="topic-tag">Performance</span>
-                                            <span class="topic-tag">BigO</span>
-                                        </div>
-                                        <small class="text-muted">12 min read</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- Interactive Demo Section -->
-                    <div class="interactive-demo mb-5" id="interactive">
-                        <h3 class="h4 mb-3">🎮 Try It Yourself!</h3>
-                        <p>Practice</p> with our interactive Python dictionary playground</p>
-                        <button class="btn btn-primary btn-lg">Launch Interactive Editor</button>
-                    </div>
-
-                    <!-- Quick Reference Section -->
-                    <div class="card mb-5">
-                        <div class="card-header bg-primary text-white">
-                            <h3 class="h5 mb-0">⚡ Quick Reference</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="h6">Creation</h4>
-                                    <pre class="code-preview">d = {}
-d = dict()
-d = {"a": 1, "b": 2}
-d = dict(a=1, b=2)
-d = dict([("a", 1), ("b", 2)])</pre>
-                                </div>
-                                <div class="col-md-6">
-                                    <h4 class="h6">Common Operations</h4>
-                                    <pre class="code-preview">d["key"] = value
-value = d.get("key")
-del d["key"]
-"key" in d
-len(d)</pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pagination -->
-                    <nav aria-label="Tutorial pagination">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
 
-                <!-- Sidebar -->
-                <aside class="col-lg-4">
-                    <!-- Search Widget -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h5 mb-3">🔍 Search Topics</h3>
-                            <form class="search-box position-relative">
-                                <input type="search" placeholder="Search dictionary topics..." aria-label="Search">
-                                <button type="submit" aria-label="Search">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </form>
+                <!-- Popular Posts -->
+                <div class="widget">
+                    <h3 class="widget-title">Popular This Week</h3>
+                    <div class="popular-post">
+                        <div class="popular-number">1</div>
+                        <div class="popular-content">
+                            <h4>10 JavaScript Tips Every Developer Should Know</h4>
+                            <span>15,234 views</span>
                         </div>
                     </div>
+                    <div class="popular-post">
+                        <div class="popular-number">2</div>
+                        <div class="popular-content">
+                            <h4>Complete Guide to CSS Grid Layout</h4>
+                            <span>12,891 views</span>
+                        </div>
+                    </div>
+                    <div class="popular-post">
+                        <div class="popular-number">3</div>
+                        <div class="popular-content">
+                            <h4>Building REST APIs with Node.js</h4>
+                            <span>10,445 views</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <!-- Dictionary Methods Card -->
-                    <div class="method-card">
-                        <h3 class="h5 mb-3">📘 Featured Method</h3>
-                        <h4 class="h4 mb-2 code-font">dict.setdefault()</h4>
-                        <p class="small">Get a value or set a default if the key doesn't exist.</p>
-                        <code class="text-white">
-                            d.setdefault("key", "default")
-                        </code>
-                        <a href="/methods/setdefault" class="btn btn-light btn-sm mt-3">Learn More →</a>
-                    </div>
+                <!-- Newsletter -->
+                <div class="widget">
+                    <h3 class="widget-title">Newsletter</h3>
+                    <p style="margin-bottom: 16px; font-size: 14px; color: var(--text-gray);">Get weekly tech tips delivered to your inbox</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-button">Subscribe</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
 
-                    <!-- Popular Topics -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h3 class="h5 mb-0">🔥 Popular Topics</h3>
-                        </div>
-                        <div class="list-group list-group-flush">
-                            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                Dictionary Comprehension
-                                <span class="badge badge-primary badge-pill">Hot</span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                Nested Dictionaries
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                Dictionary vs List Performance
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                DefaultDict and OrderedDict
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                JSON to Dictionary Conversion
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Quiz Section -->
-                    <div class="quiz-section" id="quiz">
-                        <h3 class="h5 mb-3">🎯 Quick Quiz</h3>
-                        <p class="mb-3">Test your dictionary knowledge!</p>
-                        <div class="mb-3">
-                            <p class="font-weight-bold">What is the time complexity of dictionary lookup?</p>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="quiz1" id="q1a">
-                                <label class="form-check-label" for="q1a">O(n)</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="quiz1" id="q1b">
-                                <label class="form-check-label" for="q1b">O(1)</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="quiz1" id="q1c">
-                                <label class="form-check-label" for="q1c">O(log n)</label>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary btn-sm">Check Answer</button>
-                    </div>
-
-                    <!-- Resources -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h3 class="h5 mb-0">📚 Resources</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled mb-0">
-                                <li class="mb-2">
-                                    <i class="fas fa-download text-primary"></i>
-                                    <a href="/download/dict-cheatsheet.pdf">Dictionary Cheat Sheet (PDF)</a>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fas fa-code text-primary"></i>
-                                    <a href="/playground">Interactive Playground</a>
-                                </li>
-                                <li class="mb-2">
-                                    <i class="fas fa-video text-primary"></i>
-                                    <a href="/video-tutorials">Video Tutorials</a>
-                                </li>
-                                <li>
-                                    <i class="fas fa-book text-primary"></i>
-                                    <a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries" target="_blank">Official Python Docs</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Practice Exercises -->
-                    <div class="card">
-                        <div class="card-header bg-warning text-dark">
-                            <h3 class="h5 mb-0">💪 Practice Exercises</h3>
-                        </div>
-                        <div class="card-body">
-                            <ol class="mb-0">
-                                <li class="mb-2">Create a word frequency counter</li>
-                                <li class="mb-2">Merge two dictionaries</li>
-                                <li class="mb-2">Find common keys in multiple dicts</li>
-                                <li class="mb-2">Implement a simple cache using dict</li>
-                                <li>Convert nested JSON to flat dictionary</li>
-                            </ol>
-                            <button class="btn btn-warning btn-sm mt-3">Start Exercises</button>
-                        </div>
-                    </div>
-                </aside>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About TechTips</h3>
+                <p>Your go-to resource for programming tutorials, tech guides, and software development best practices.</p>
             </div>
-
-            <!-- Code Examples Section -->
-            <section class="mt-5">
-                <h2 class="h3 mb-4 text-center">📝 Real-World Examples</h2>
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <div class="feature-icon text-center">
-                                    <i class="fas fa-database"></i>
-                                </div>
-                                <h3 class="h5 text-center">Data Storage</h3>
-                                <pre class="code-preview">
-<span class="comment"># Store user data</span>
-users = {
-    <span class="string">"user123"</span>: {
-        <span class="string">"name"</span>: <span class="string">"Alice"</span>,
-        <span class="string">"email"</span>: <span class="string">"alice@example.com"</span>
-    }
-}</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <div class="feature-icon text-center">
-                                    <i class="fas fa-cog"></i>
-                                </div>
-                                <h3 class="h5 text-center">Configuration</h3>
-                                <pre class="code-preview">
-<span class="comment"># App configuration</span>
-config = {
-    <span class="string">"debug"</span>: <span class="keyword">True</span>,
-    <span class="string">"port"</span>: <span class="number">8000</span>,
-    <span class="string">"host"</span>: <span class="string">"localhost"</span>
-}</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <div class="feature-icon text-center">
-                                    <i class="fas fa-chart-bar"></i>
-                                </div>
-                                <h3 class="h5 text-center">Data Analysis</h3>
-                                <pre class="code-preview">
-<span class="comment"># Count occurrences</span>
-counts = {}
-<span class="keyword">for</span> item <span class="keyword">in</span> data:
-    counts[item] = counts.get(item, <span class="number">0</span>) + <span class="number">1</span></pre>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section class="mt-5 mb-5">
-                <h2 class="h3 mb-4 text-center">❓ Frequently Asked Questions</h2>
-                <div class="accordion" id="faqAccordion">
-                    <div class="card">
-                        <div class="card-header" id="faq1">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#collapse1">
-                                    What's the difference between dict() and {}?
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapse1" class="collapse show" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                Both create dictionaries, but {} is faster for literals. Use dict() for creating from sequences or keyword arguments.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="faq2">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse2">
-                                    Can dictionary keys be any type?
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapse2" class="collapse" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                Dictionary keys must be immutable (hashable) types: strings, numbers, tuples (if they contain only immutable types). Lists and other dictionaries cannot be keys.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="faq3">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse3">
-                                    How do I handle missing keys safely?
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapse3" class="collapse" data-parent="#faqAccordion">
-                            <div class="card-body">
-                                Use the get() method with a default value, try/except blocks with KeyError, or check with 'in' operator before accessing.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-dark text-light py-5 mt-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 mb-4">
-                        <h3 class="h5 mb-3">Python Dictionary Mastery</h3>
-                        <p class="small">Your comprehensive resource for mastering Python dictionaries. From basics to advanced techniques.</p>
-                        <div class="mt-3">
-                            <a href="/certificate" class="btn btn-outline-warning btn-sm">
-                                <i class="fas fa-certificate"></i> Get Certified
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 mb-4">
-                        <h3 class="h6 mb-3">Learn</h3>
-                        <ul class="list-unstyled small">
-                            <li><a href="/basics" class="text-light">Basics</a></li>
-                            <li><a href="/methods" class="text-light">Methods</a></li>
-                            <li><a href="/advanced" class="text-light">Advanced</a></li>
-                            <li><a href="/examples" class="text-light">Examples</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 mb-4">
-                        <h3 class="h6 mb-3">Practice</h3>
-                        <ul class="list-unstyled small">
-                            <li><a href="/exercises" class="text-light">Exercises</a></li>
-                            <li><a href="/challenges" class="text-light">Challenges</a></li>
-                            <li><a href="/projects" class="text-light">Projects</a></li>
-                            <li><a href="/quiz" class="text-light">Quizzes</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 mb-4">
-                        <h3 class="h6 mb-3">Resources</h3>
-                        <ul class="list-unstyled small">
-                            <li><a href="/cheatsheet" class="text-light">Cheat Sheet</a></li>
-                            <li><a href="/videos" class="text-light">Videos</a></li>
-                            <li><a href="/books" class="text-light">Books</a></li>
-                            <li><a href="/api" class="text-light">API Docs</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 mb-4">
-                        <h3 class="h6 mb-3">Connect</h3>
-                        <ul class="list-unstyled small">
-                            <li><a href="https://github.com/python" class="text-light" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-                            <li><a href="https://stackoverflow.com/questions/tagged/python-dict" class="text-light" target="_blank"><i class="fab fa-stack-overflow"></i> Stack Overflow</a></li>
-                            <li><a href="/discord" class="text-light"><i class="fab fa-discord"></i> Discord</a></li>
-                            <li><a href="/forum" class="text-light"><i class="fas fa-comments"></i> Forum</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <hr class="bg-secondary">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="small mb-0">&copy; 2023 Python Dictionary Mastery. All rights reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-md-right">
-                        <a href="/privacy" class="text-light small mr-3">Privacy</a>
-                        <a href="/terms" class="text-light small mr-3">Terms</a>
-                        <a href="/sitemap" class="text-light small">Sitemap</a>
-                    </div>
-                </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="#">JavaScript</a></li>
+                    <li><a href="#">Python</a></li>
+                    <li><a href="#">React</a></li>
+                    <li><a href="#">Node.js</a></li>
+                    <li><a href="#">DevOps</a></li>
+                </ul>
             </div>
-        </footer>
-
-        <!-- Scripts -->
-        <script src="js/plugins.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            // Progress bar animation
-            $(window).on('load', function() {
-                $('.progress-bar').each(function() {
-                    var $this = $(this);
-                    var width = $this.attr('aria-valuenow') + '%';
-                    $this.animate({width: width}, 1000);
-                });
-            });
-
-            // Smooth scrolling
-            $('a[href^="#"]').on('click', function(e) {
-                e.preventDefault();
-                var target = $(this.hash);
-                if (target.length) {
-                    $('html, body').animate({
-                        scrollTop: target.offset().top - 80
-                    }, 800);
-                }
-            });
-        </script>
-    </body>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Code Examples</a></li>
+                    <li><a href="#">Cheat Sheets</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="#">Books</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul class="footer-links">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">RSS Feed</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 TechTips Blog. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
 </html>

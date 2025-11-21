@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master Python dictionaries with practical tutorials, code examples, and expert tips. Learn dictionary methods, operations, and best practices.">
+    <meta name="keywords" content="python dictionary, python dict tutorial, python hashmap, dictionary methods, python programming">
+    <title>Python Dictionary Tips - Practical Tutorials & Examples</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #e74c3c;
+            --primary-hover: #c0392b;
+            --text-dark: #2c3e50;
+            --text-gray: #6c757d;
+            --bg-light: #f8f9fa;
+            --border-color: #dee2e6;
+            --card-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            --card-hover-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .search-btn {
+            padding: 8px 16px;
+            background: var(--bg-light);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 40px;
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .filter-tab {
+            padding: 8px 20px;
+            background: var(--bg-light);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Tutorial Cards */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .tutorial-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .card-header {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .difficulty-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            background: white;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-beginner { color: #27ae60; }
+        .badge-intermediate { color: #f39c12; }
+        .badge-advanced { color: #e74c3c; }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .card-description {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .code-snippet {
+            background: #f4f4f4;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .code-snippet .keyword { color: #d73a49; }
+        .code-snippet .string { color: #032f62; }
+        .code-snippet .number { color: #005cc5; }
+        .code-snippet .comment { color: #6a737d; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            background: var(--bg-light);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .read-time {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .widget {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+
+        .popular-list {
+            list-style: none;
+        }
+
+        .popular-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .popular-item:last-child {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .popular-number {
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .popular-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .popular-content span {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+        }
+
+        .newsletter-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+        }
+
+        .newsletter-box .widget-title {
+            color: white;
+        }
+
+        .newsletter-box p {
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .email-input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .subscribe-btn {
+            width: 100%;
+            padding: 10px;
+            background: white;
+            color: var(--primary);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">PD</div>
+                Python Dictionary Tips
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#tutorials">Tutorials</a></li>
+                    <li><a href="#methods">Methods</a></li>
+                    <li><a href="#examples">Examples</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><button class="search-btn"><i class="fas fa-search"></i> Search</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Master Python Dictionaries</h1>
+        <p>Learn everything about Python's most powerful data structure with practical examples</p>
+        <div class="hero-buttons">
+            <a href="#start" class="btn btn-white">Start Learning</a>
+            <a href="#playground" class="btn btn-outline">Try Playground</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-wrapper">
+            <!-- Main Content -->
+            <main>
+                <div class="section-header">
+                    <h2 class="section-title">Latest Tutorials</h2>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active">All</button>
+                        <button class="filter-tab">Beginner</button>
+                        <button class="filter-tab">Intermediate</button>
+                        <button class="filter-tab">Advanced</button>
+                        <button class="filter-tab">Methods</button>
+                    </div>
+                </div>
+
+                <div class="tutorials-grid">
+                    <!-- Tutorial Card 1 -->
+                    <article class="tutorial-card">
+                        <div class="card-header">
+                            <i class="fas fa-book-open card-icon"></i>
+                            <span class="difficulty-badge badge-beginner">Beginner</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Getting Started with Python Dictionaries</h3>
+                            <p class="card-description">Learn the fundamentals of dictionaries, how to create them, and basic operations you need to know.</p>
+                            <div class="code-snippet">
+                                <span class="comment"># Creating a dictionary</span><br>
+                                my_dict = {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>}
+                            </div>
+                            <div class="card-footer">
+                                <div class="tags">
+                                    <span class="tag">Basics</span>
+                                    <span class="tag">Syntax</span>
+                                </div>
+                                <span class="read-time">5 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Tutorial Card 2 -->
+                    <article class="tutorial-card">
+                        <div class="card-header">
+                            <i class="fas fa-key card-icon"></i>
+                            <span class="difficulty-badge badge-beginner">Beginner</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Essential Dictionary Methods</h3>
+                            <p class="card-description">Master the most important dictionary methods like get(), keys(), values(), and items().</p>
+                            <div class="code-snippet">
+                                value = my_dict.get(<span class="string">"key"</span>, default)<br>
+                                all_keys = my_dict.keys()
+                            </div>
+                            <div class="card-footer">
+                                <div class="tags">
+                                    <span class="tag">Methods</span>
+                                    <span class="tag">Operations</span>
+                                </div>
+                                <span class="read-time">8 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Tutorial Card 3 -->
+                    <article class="tutorial-card">
+                        <div class="card-header">
+                            <i class="fas fa-layer-group card-icon"></i>
+                            <span class="difficulty-badge badge-intermediate">Intermediate</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Working with Nested Dictionaries</h3>
+                            <p class="card-description">Learn how to handle complex data structures with nested dictionaries effectively.</p>
+                            <div class="code-snippet">
+                                data = {<span class="string">"users"</span>: {<br>
+                                &nbsp;&nbsp;<span class="string">"john"</span>: {<span class="string">"age"</span>: <span class="number">30</span>}<br>
+                                }}
+                            </div>
+                            <div class="card-footer">
+                                <div class="tags">
+                                    <span class="tag">Nested</span>
+                                    <span class="tag">Complex</span>
+                                </div>
+                                <span class="read-time">10 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Tutorial Card 4 -->
+                    <article class="tutorial-card">
+                        <div class="card-header">
+                            <i class="fas fa-code card-icon"></i>
+                            <span class="difficulty-badge badge-intermediate">Intermediate</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Dictionary Comprehension</h3>
+                            <p class="card-description">Create dictionaries efficiently using Python's powerful comprehension syntax.</p>
+                            <div class="code-snippet">
+                                squares = {x: x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)}
+                            </div>
+                            <div class="card-footer">
+                                <div class="tags">
+                                    <span class="tag">Comprehension</span>
+                                    <span class="tag">Pythonic</span>
+                                </div>
+                                <span class="read-time">7 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Tutorial Card 5 -->
+                    <article class="tutorial-card">
+                        <div class="card-header">
+                            <i class="fas fa-object-group card-icon"></i>
+                            <span class="difficulty-badge badge-intermediate">Intermediate</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Merging Dictionaries</h3>
+                            <p class="card-description">Learn different techniques to merge and update dictionaries in Python 3.9+.</p>
+                            <div class="code-snippet">
+                                <span class="comment"># Python 3.9+</span><br>
+                                merged = dict1 | dict2
+                            </div>
+                            <div class="card-footer">
+                                <div class="tags">
+                                    <span class="tag">Merge</span>
+                                    <span class="tag">Update</span>
+                                </div>
+                                <span class="read-time">6 min read</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Tutorial Card 6 -->
+                    <article class="tutorial-card">
+                        <div class="card-header">
+                            <i class="fas fa-tachometer-alt card-icon"></i>
+                            <span class="difficulty-badge badge-advanced">Advanced</span>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Dictionary Performance</h3>
+                            <p class="card-description">Understand hash tables and optimize dictionary operations for maximum speed.</p>
+                            <div class="code-snippet">
+                                <span class="comment"># O(1) lookup time</span><br>
+                                <span class="keyword">if</span> key <span class="keyword">in</span> my_dict:
+                            </div>
+                            <div class="card-footer">
+                                <div class="tags">
+                                    <span class="tag">Performance</span>
+                                    <span class="tag">Optimization</span>
+                                </div>
+                                <span class="read-time">12 min read</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Search Widget -->
+                <div class="widget">
+                    <h3 class="widget-title">Search Tutorials</h3>
+                    <form class="search-box">
+                        <input type="search" class="search-input" placeholder="Search tutorials...">
+                        <i class="fas fa-search search-icon"></i>
+                    </form>
+                </div>
+
+                <!-- Popular Tutorials -->
+                <div class="widget">
+                    <h3 class="widget-title">Most Popular</h3>
+                    <ul class="popular-list">
+                        <li class="popular-item">
+                            <div class="popular-number">1</div>
+                            <div class="popular-content">
+                                <h4>Dictionary vs List Performance</h4>
+                                <span>15,234 views</span>
+                            </div>
+                        </li>
+                        <li class="popular-item">
+                            <div class="popular-number">2</div>
+                            <div class="popular-content">
+                                <h4>JSON to Dictionary</h4>
+                                <span>12,456 views</span>
+                            </div>
+                        </li>
+                        <li class="popular-item">
+                            <div class="popular-number">3</div>
+                            <div class="popular-content">
+                                <h4>DefaultDict Explained</h4>
+                                <span>9,871 views</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="widget newsletter-box">
+                    <h3 class="widget-title">Weekly Python Tips</h3>
+                    <p>Get dictionary tips delivered to your inbox</p>
+                    <form></form>
+                        <input type="email" class="email-input" placeholder="Your email address" required>
+                        <button type="submit" class="subscribe-btn">Subscribe</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Python Dictionary Tips</h3>
+                <p>Your comprehensive resource for mastering Python dictionaries through practical examples and clear explanations.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Learn</h3>
+                <ul class="footer-links">
+                    <li><a href="/tutorials">All Tutorials</a></li>
+                    <li><a href="/methods">Dictionary Methods</a></li>
+                    <li><a href="/examples">Code Examples</a></li>
+                    <li><a href="/cheatsheet">Cheat Sheet</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="/playground">Code Playground</a></li>
+                    <li><a href="/quiz">Practice Quiz</a></li>
+                    <li><a href="/downloads">Downloads</a></li>
+                    <li><a href="/api">API Reference</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Community</h3>
+                <ul class="footer-links">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Stack Overflow</a></li>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Forum</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Python Dictionary Tips. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
