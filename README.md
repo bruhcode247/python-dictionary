@@ -12,7 +12,7 @@ A beginner-friendly, interactive Python learning platform with a bubbly and play
 
 ## 🚀 Live Demo
 
-**Website**: [python-docs.pages.dev](https://python-docs.pages.dev)
+**Website**: [python-dictionary.pages.dev](https://python-dictionary.pages.dev)
 
 ## 📚 Available Tutorials
 
